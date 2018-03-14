@@ -1,0 +1,66 @@
+   #iconos{
+            height: 60px;
+            width: 70px;
+
+
+      }
+      .derecha{
+        float:right;
+      }
+
+      li {
+           display: inline;
+
+      }
+      table th{
+        
+        text-align: center;
+        font-size: 14px;
+      }
+      table tr{
+        font-color: black;
+   }
+    .data-table{padding-left:10px;}
+    .data-table table{border-collapse:collapse;border:1px solid #ddd;width:100%}
+
+    .Ganada, .Completado{
+      background-color: #d9edf7;
+    }
+    .Perdida{
+      background-color: #f2dede;
+    }
+    .Abierta{
+      background-color: #dff0d8;
+    }
+    .En{
+      background-color: #dff0d8;
+    }
+
+    .Abandonada, .Abandonado{
+      background-color: #f2dede  ;
+    }
+
+    .Suspendida, .Diferido{
+      background-color: #fcf8e3;
+    }
+
+    .Cancelada, .Cancelado{
+      background-color: #f2dede  ;
+    }
+.parsley-required{
+  color:red;
+}
+
+/*.jumbotron {
+background-image: url("../images/logo.jpg");
+
+background-repeat: no-repeat;
+}
+
+*/
+
+
+
+
+
+

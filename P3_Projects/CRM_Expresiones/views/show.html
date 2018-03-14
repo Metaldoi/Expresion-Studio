@@ -1,0 +1,147 @@
+
+<% include partials/header %>
+<script>
+$('#myTabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+</script>
+
+<style>
+	img{
+		margin-right: 2px;
+
+	}
+
+</style>
+
+ <div class="container"></div>
+
+	<div>
+
+	  <!-- Nav tabs -->
+	  <ul class="nav nav-tabs" role="tablist">
+	    <li role="presentation" class="active"><a href="#hoy" aria-controls="home" role="tab" data-toggle="tab">Hoy</a></li>
+	    <li role="presentation"><a href="/bdays/siete" aria-controls="profile" role="tab" >7 Dias</a></li>
+	    <li role="presentation"><a href="/bdays/quince" aria-controls="messages" role="tab" >15 Dias</a></li>
+	    <li role="presentation"><a href="/bdays/treinta" aria-controls="settings" role="tab">30 Dias</a></li>
+	  </ul>
+
+	  <!-- Tab panes -->
+	  <div class="tab-content"><!--Hoy-->
+	    <div role="tabpanel" class="tab-pane active" id="hoy">
+				        <div class="section">
+			      <div class="container">
+			        <div class="row">
+			          <div class="col-md-12">
+			            <h4 class="text-center">Cumpleanos del Dia</h4>
+			            
+			            <p class="text-center"></p>
+			          </div>
+			        </div>
+			       <!--Aqui el ciclo -->
+
+			      
+          
+           
+
+				
+           
+            <% if(users.length) {
+                users.forEach(function(user){ %>
+
+
+                 <script>  alertify.success("Tienes: <%= users.length %> personas celebrando su cumpleanos");
+
+            		setTimeout(function(){
+                        alertify.logPosition("bottom right");
+                      alertify.error("No olvides mandar un mensaje de felicitacion");
+
+                      }, 5000);	
+
+             </script>
+  
+           
+				
+
+				<div class="row animated fadeIn">
+			          <div class="col-md-12 ">
+			            <img src="http://graph.facebook.com/100001471218484/picture?type=large"
+			            class="center-block img-responsive text-center">
+			            <h5 class="text-center"><%=user.username%>
+			             
+			            </h5>
+			            <p class="text-center"><%=user.empresa%></p>
+			            <p class="text-center"><%=user.direccion%></p>
+			            <p class="text-center"><strong><%=user.fecha%></strong></p>
+
+			            
+			            <p class="text-center">
+
+						<!--FB-->
+			            <a href="http://faceboo.com/<%=user.fb%>">
+			            
+			            <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/square-facebook-512.png" alt="" height="32px" width="32px"></a>
+
+						<!--MAIL-->
+			            <a href="<%=user.mail%>">
+			            
+			            <img src="http://a4.mzstatic.com/eu/r30/Purple4/v4/07/5d/85/075d857a-49b2-d03f-e47f-a4fd94ee9a16/icon128-2x.png" alt="" height="32px" width="32px"></a>
+
+						<!--TWITTER-->
+			            <a href="<%=user.twitter%>">
+						
+			            <img src="http://cdn.business2community.com/wp-content/uploads/2015/07/Twitter-icon.png.png" alt="" height="32px" width="32px"></a>
+						<!--PHONE-->
+			            <a href= "tel:<%=user.telefono%>">
+						
+			            <img src="http://icons.iconarchive.com/icons/igh0zt/ios7-style-metro-ui/512/MetroUI-Other-Phone-icon.png" alt="" height="32px" width="32px"></a></p>
+
+
+			          </div>
+					
+
+			        </div>
+
+
+
+
+			        
+			      </div>
+			    </div>
+			    <hr>
+
+
+			   <%    })
+            }else{ %>
+			
+				<br>
+				<br><br>
+				<div class="alert alert-success" role="alert">
+					  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					  <span class="sr-only">Error:</span>
+					  <span style="text-align:center"> Actualmente no hay fechas que celebrar</span>
+					</div>
+
+					<script>
+           
+                        setTimeout(function() {
+                          alertify.log("No hay fechas que celebrar");
+                        }, 0);
+
+                        setTimeout(function() {
+                          alertify.log("Vuelve manana");
+                        }, 2000);
+                   </script>
+           
+            <%
+            }  %>
+      
+
+
+	 </div><!--End Hoy -->
+   <br>
+
+
+
+</div>

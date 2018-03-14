@@ -1,0 +1,145 @@
+<% include partials/header %>
+
+
+  <script>
+  $(function() {
+    
+    var date = $('#datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
+  console.log(date);
+   $('[data-toggle="tooltip"]').tooltip(); 
+
+
+
+  });
+  </script>
+
+   <style type="text/css">
+.ui-datepicker {
+   background: #FFFFF0;
+   border: 1px solid #555;
+   color: red;
+ }
+
+ .glyphicon-question-sign {
+    font-size: 20px;
+    color: #6F8090;
+    top:7px;
+}
+label{
+  font-weight: bold;
+  font-size: 15px;
+}
+
+  
+</style>
+
+
+ 
+<form class="animated fadeIn "method="POST" action="/proyecto/">
+        <div class="col-sm-8 col-md-offset-2">
+            <h3 class="text-center">Detalles de Proyecto</h3>
+            <hr>
+         
+                <div class="panel-body form-horizontal payment-form">
+
+                  <div class="form-group">
+                        <div class="row">
+                          <label style="color:blue"for="id" class="col-sm-5 control-label">ID Proyecto : <%=info[0].id%></label>
+                             <label for="id" class="col-sm-5 control-label">Estado Actual : <span class="<%=info[0].statusP%>"><%=info[0].statusP%></span></label>
+                             <label for="id" class="col-sm-5 control-label">Fecha de Creacion : 20<%=info[0].actualP%></label>
+                             
+                  </div>
+
+                  <hr>
+                          
+                       
+                        
+                 
+ 
+                    <div class="form-group">
+                        <label for="nombreP" class="col-sm-3 control-label">Nombre</label>
+                        <div class="col-md-6 col-sm-9">
+                            <input value="<%=info[0].nombreP%>" id="texto"type="text" class="form-control" id="nombreP" name="nombreP">
+                        </div>
+                    </div> 
+ 
+                   
+                    <div class="form-group">
+                        <label for="descripcion" class="col-sm-3 control-label">Descripcion</label>
+                        <div class="col-md-6 col-sm-9">
+                        <textarea type="input" class="form-control" id="descripcionP" name="descripcionP" required="data-parsley-validate-if-empty"name="descripcionP"  data-parsley-group="block1"data-parsley-required-message="Introduzca una breve descripcion"><%=info[0].descripcionP%></textarea>
+                            
+                        </div>
+                    </div>
+                      
+                    <div class="form-group">
+                        <label for="ratingP" class="col-sm-3 control-label">Rating</label>
+                        <div class="col-sm-9">
+                            <div class="input-group col-md-5 col-sm-3">
+                               
+                                <!--   Solo permite numeros -->
+                                    <input value="<%=info[0].ratingP%>"onkeypress='return event.charCode >= 48 && event.charCode <= 57'type="text" class="form-control" id="ratingP" name="ratingP">
+                                
+                             </div>
+                        </div>
+                    </div>
+                                
+                    <div class="form-group">
+                        <label for="responsableP" class="col-sm-3 control-label">Responsable</label>
+                        <div class="col-md-6 col-sm-9">
+                            <input value="<%=info[0].responsableP%>" type="text" class="form-control" id="responsableP" name="responsableP">
+                        </div>
+                    </div>
+
+ 
+                    <div class="form-group">
+                        <label for="fechaP" class="col-sm-3 control-label">Fecha de Cierre</label>
+                        <div class="col-md-3 col-sm-9" >
+                                                  
+                            <input value="20<%=info[0].fechaP%>" class="form-control " id="datepicker" name="fechaP">
+                        </div>
+                    </div>
+
+                     <div class="form-group">
+                            <label for="statusP"title="My tooltip content" class="col-sm-3 control-label ">Status</label> <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Indicar el estado actual de la oportunidad"></span>
+                           
+                            <div class="col-md-3 col-sm-3" >
+                                                                    
+                             <select value="<%=info[0].statusP%>"name="statusP"class="form-control">
+                              <option value="En Progreso">En Progreso</option>
+                              <option value="Completado">Completado</option>
+                              <option value="Diferido">Diferido</option>
+                              <option value="Cancelado">Cancelado</option>
+                              <option value="Abandonado">Abandonado</option>
+                             
+
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="referidoP" class="col-sm-3 control-label">Referencia</label>
+                        <div class="col-md-6 col-sm-9">
+                            <input value="<%=info[0].referidoP%>" class="form-control" id="referidoP" name="referidoP">
+                        </div>
+                    </div>
+                    <!--campo oculto para decirle a express que es una petición put-->
+                    <input type="hidden" name="_method" value="PUT">
+                    <!--campo oculto con el id del usuario-->
+                    <input type="hidden" name="id" value="<%=info[0].id%>">
+                    <hr>
+                    
+                    <div class="form-group">
+                        <div class="col-sm-12 text-right">
+                            <button type="submit" id="agregar"  type="text"class="btn btn-primary preview-add-button">
+                                <span class="glyphicon glyphicon-edit"></span> Actualizar
+                           </button>
+                        </div>
+                   
+
+                    </div>
+                </div>
+            </div>            
+       
+    </form>
