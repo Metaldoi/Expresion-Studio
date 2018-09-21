@@ -1,0 +1,153 @@
+<% include partials/header %>
+
+  <script>
+  $(function() {
+    
+    var date = $('#datepicker').datepicker({ dateFormat: 'yy/mm/dd' }).val();
+    console.log(date);
+
+   $('[data-toggle="tooltip"]').tooltip(); 
+
+
+
+   $('.demo-form').parsley().on('form:validate', function (formInstance) {
+    var ok = formInstance.isValid({group: 'block1', force: true}) || formInstance.isValid({group: 'block2', force: true});
+    $('.invalid-form-error-message')
+              alertify.error('Verifique que la informacion este completa');
+    if (!ok)
+      formInstance.validationResult = false;
+
+  });
+
+
+  });
+  </script>
+
+   <style type="text/css">
+.ui-datepicker {
+   background: #FFFFF0;
+   border: 1px solid #555;
+   color: red;
+ }
+
+ .glyphicon-question-sign {
+    font-size: 20px;
+    color: #6F8090;
+    top:7px;
+}
+label{
+font-size: 14px;
+}
+
+
+
+  
+</style>
+ 
+
+
+ 
+<form class="demo-form animated fadeIn" method="POST" action="/oportunidad">
+        <div class="col-sm-7 col-md-offset-3">
+                <h1 title="hello world" class="tooltip">Hello </h1>
+            <h4>Crear Nueva Oportunidad:</h4>
+            <div class="panel panel-default">
+                <div class="panel-body form-horizontal">
+ 
+                    <div class="form-group">
+                        <label for="nombre" class="col-sm-3 control-label">Nombre</label>
+                        <div class="col-md-6 col-sm-9">
+                            <input id="texto"type="text" class="form-control" id="nombre" required="data-parsley-validate-if-empty"name="nombre"  data-parsley-group="block1" data-parsley-required-message="Introduzca nombre de oportunidad">
+                        </div>
+                    </div> 
+ 
+                    <div class="form-group">
+                        <label for="descripcion" class="col-sm-3 control-label">Descripcion</label>
+                        <div class="col-md-6 col-sm-9">
+                        <textarea type="textarea" class="form-control" id="descripcion" name="descripcion" required="data-parsley-validate-if-empty"name="nombre"  data-parsley-group="block1"data-parsley-required-message="Introduzca una breve descripcion"></textarea>
+                            
+                        </div>
+                    </div>
+
+
+                      
+                    <div class="form-group">
+                        <label for="valor" class="col-sm-3 control-label">Valor</label>
+                        <div class="col-sm-9">
+                            <div class="input-group col-md-5 col-sm-3">
+                                <div class="input-group-addon">$</div>
+                                <!--   Solo permite numeros -->
+                                    <input onkeypress='return event.charCode >= 48 && event.charCode <= 57'type="text" class="form-control" id="valor" name="valor">
+                                <div class="input-group-addon">.00</div>
+                             </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="responsable" class="col-sm-3 control-label">Quien es Responsable</label>
+                        <div class="col-md-6 col-sm-9">
+                            <input type="text" class="form-control" id="responsable" name="responsable">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fecha" class="col-sm-3 control-label" >Fecha</label>
+                        <div class="col-md-4 col-sm-9" >
+                                                  
+                            <input  class="form-control " id="datepicker" name="fecha" required="data-parsley-validate-if-empty"name="nombre"  data-parsley-group="block1" data-parsley-required-message="Introduzca una Fecha">
+                        </div>
+                    </div>
+                                
+                    
+
+ 
+                    
+
+
+                    <div class="form-group">
+                            <label for="estado"title="My tooltip content" class="col-sm-3 control-label ">Status</label> <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Indicar el estado actual de la oportunidad"></span>
+                           
+                            <div class="col-md-3 col-sm-3" >
+                                                                    
+                             <select name="estado"class="form-control">
+                              <option value="Abierta">Abierta</option>
+                             <option value="Ganada">Ganada</option>
+                              <option value="Perdida">Perdida</option>
+                              <option value="Abandonada">Abandonada</option>
+                              <option value="Suspendida">Suspendida</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="origen" class="col-sm-3 control-label">Origen</label> <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Indicar como se obtuvo la oportunidad"></span>
+                        <div class="col-md-6 col-sm-9">
+                            <input class="form-control" id="origen" name="origen">
+                        </div>
+                    </div>
+
+                  
+                    
+                    <div class="form-group">
+                        <div class="col-sm-12 text-right">
+                            <button type="submit" id="agregar"  type="text"class="btn btn-primary preview-add-button">
+                                <span class="glyphicon glyphicon-plus"></span> Agregar
+                           </button>
+                        </div>
+
+                   
+
+                    </div>
+                </div>
+            </div>            
+        </div> <!-- / panel preview -->
+    </form>
+
+   <!--  <h3><%=proy%></h3> -->
+
+
+
+    

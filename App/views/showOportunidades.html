@@ -1,0 +1,193 @@
+<% include partials/header %>
+
+<div class="row animated fadeIn ">
+		<div class="col-md-12 text-left">
+			<a href="/oportunidad" class="btn btn-primary text-center">
+					<span class="glyphicon glyphicon-plus"></span> oportunidad
+
+			</a>	<img style="float:right"src="/../images/oportunity.png" alt="" width="60px;" height="60px;">					
+        </div>
+</div>	
+
+
+
+     <div class="container">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<h3>LISTADO DE OPORTUNIDADES </h3>
+
+		<button class="btn btn-info"style="float:right" onclick="goBack()"><span class="glyphicon glyphicon-arrow-left"></span> Atras</button>
+
+			</div>
+		</div>
+</div>
+
+
+<br>
+
+<script>
+	
+
+	 function goBack() {
+      window.history.back();
+
+
+}
+
+ 	function clicked(e)
+     {
+
+      if(!confirm('Esta seguro de eliminar el Registro?'))e.preventDefault();
+     }
+
+       
+
+</script>
+
+
+
+<style>
+	th{
+		text-align: center;
+
+	}
+
+	#headerProject{
+		font-weight: bold;
+		font-size: 15px;
+
+
+	}
+	#estilo{
+		font-size: 15px;
+		padding-bottom: 10px;	
+		color: black;
+		font-weight: bold;
+	}
+	.titlemodal{
+		font-size: 25px;
+		
+	}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #f5f5f5;
+}
+
+</style>
+<div class="page-data">
+	
+	<% if (oportunidades.length) { %>
+
+ <div class="data-table " > 
+	<table class="table hover" id="myTable">
+		<thead>
+			<tr>
+			    <th>Id</th>
+				<th class="text-left">Nombre</th>
+				<th>Descripcion</th>
+				<th>Responsable</th>
+				<th>Estado</th>
+
+				
+				
+				
+				<th class="text-right">Acciones</th>
+				<th></th>
+				
+				
+				
+			</tr>
+		</thead>
+		<tbody class="activity">	
+		    <% oportunidades.forEach(function(oportunidad) { %> 
+			    <tr class="<%=oportunidad.estado %> " id="acordion">
+			    	<td style="text-align:center"><%= oportunidad.id %></td>
+					<td><%= oportunidad.nombre %></td>
+					<td><%= oportunidad.descripcion %></td>
+					
+					<td><%= oportunidad.responsable %></td>
+					<td class="<%= oportunidad.estado %>"style="text-align:center"><%= oportunidad.estado %></td>
+
+					<td class="text-right">
+						<form method="POST" action="/oportunidad">
+							<a data-toggle="modal" data-target="#<%=oportunidad.id%>" class="btn btn-success">
+						<span class="glyphicon glyphicon-edit"></span> 
+						</a class='text-right'>
+							
+						</form>
+
+
+					</td>
+					<td class="text-center">
+					    <form method="POST" action="/oportunidad">		
+					     
+							<input type="hidden" name="_method" value="DELETE">
+		                    <input type="hidden" name="id" value="<%= oportunidad.id %>">
+	                        <button  onclick = "clicked(event)"type="submit" class="btn btn-primary  preview-add-button">
+	                           <span class="glyphicon glyphicon-trash"></span> 
+	                        </button>
+	                    </form>
+
+					</td>
+
+
+				<!-- Inicia Ventana Modal -->
+					<div id="<%=oportunidad.id%>" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+
+				    <!-- Modal content-->
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal">&times;</button>
+				        <h3 class="modal-title text-center titlemodal">DETALLES DE OPORTUNIDAD</h3> 
+				      </div>
+				      <div style="color:black; background-color:#F9FCFF"class="modal-body">
+						    <!--  <div class= "row"><span id="estilo">Id:</span> <%= oportunidad.id %></div> -->
+						    <div class="container">
+						      <div class="row">
+						      	 
+						      </div>
+
+						     <div class= "row"><span id="estilo">&nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp  &nbspoportunidad :</span>      <%= oportunidad.nombre %></div><br>
+						     <div class= "row"><span id="estilo">Fecha Creacion :</span>      <%= oportunidad.actual %></div><br>
+						     <div class= "row"><span id="estilo">&nbsp &nbsp &nbsp &nbspDescripcion :</span> <%= oportunidad.descripcion %></div><br>
+						     
+						     <div class= "row"><span id="estilo">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Status : </span><%= oportunidad.estado %></div><br>
+						     <div class= "row"><span id="estilo">&nbsp &nbsp &nbsp &nbsp &nbsp&nbspReferencia:</span> <%=oportunidad.origen %></div><br>
+						     <div class= "row"><span id="estilo"> &nbsp &nbsp &nbspResponsable :</span> <%= oportunidad.responsable %></div><br>
+						     <div class= "row"><span id="estilo"> &nbsp &nbsp &nbspFecha Cierre :</span> <%=oportunidad.limite %></div><br>
+				      		</div>
+				      </div>
+				      <div class="modal-footer">
+				        <a href="/oportunidad/<%=oportunidad.id%>" class="btn btn-info">Editar
+						
+						</a class='text-right'>
+				        <button type="button" class="btn btn-default " data-dismiss="modal">Cerrar</button>
+				      </div>
+				    </div>
+
+				  </div>
+				</div>
+					
+				
+				</tr>
+			<% }); %>
+		</tbody>
+	</table>
+
+
+	<% }else{%>
+		<br>
+	<br><br>
+		<div style="background: #FF6961; color:white"class="col-md-6 col-md-offset-3 col-sm-3 alert alert-danger text-center">Actualmente no hay oportunidads que mostrar</div>
+		
+	<% } %>
+ </div>
+
+
+
+
